@@ -1,17 +1,10 @@
 import {useEffect, useState} from 'react'
+
 import Skeleton from 'react-loading-skeleton';
 import ConstructorChip from '../components/ConstructorChip';
 import { GiFlyingFlag } from 'react-icons/gi';
+import GenericSkeleton from '../components/GenericSkeleton';
 
-function ConstructorSkeleton() {
-    return (
-        <div className="bg-white w-full p-4 rounded-md shadow-md ">
-            <Skeleton className='w-[4rem]'/>
-            <Skeleton/>
-            <Skeleton/>
-        </div>
-    )
-}
 
 function Constructors(){
     const [constructors, setConstructors] = useState([])
@@ -40,7 +33,7 @@ function Constructors(){
                 <p className="text-xl">{ constructors.length > 0 ? "Constructor Standings" : <Skeleton className='w-[30%]'/>}</p>
             </div>
 
-            <div className="flex flex-col md:grid grid-cols-2 lg:grid-cols-3 gap-2"> 
+            <div className="flex flex-col md:grid md:gap-6 grid-cols-2 lg:grid-cols-3 gap-2"> 
                 {
                     constructors.length > 0 ? constructors.map(
                         (constructor) => {
@@ -49,7 +42,7 @@ function Constructors(){
                     ) :
                     skeletons.map(
                         () => {
-                            return <ConstructorSkeleton/>
+                            return <GenericSkeleton/>
                         }
                     )
                 }

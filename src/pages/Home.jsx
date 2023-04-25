@@ -11,7 +11,6 @@ function Home(){
     
     useEffect(
         () => {
-            console.log("heyyy")
             const url = "https://ergast.com/api/f1/current/next.json"
             fetch(url)
             .then((res) => res.json())

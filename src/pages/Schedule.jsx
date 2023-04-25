@@ -6,15 +6,7 @@ import RaceSchedule from '../components/RaceSchedule'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-function RaceSCheduleSkeleton(){
-    return (
-        <div className="bg-white w-full p-4 rounded-md shadow-md ">
-            <Skeleton className='w-[4rem]'/>
-            <Skeleton/>
-            <Skeleton/>
-        </div>
-    )
-}
+import GenericSkeleton from '../components/GenericSkeleton'
 
 function Schedule() {
     const [races, setRaces] = useState([])
@@ -59,7 +51,7 @@ function Schedule() {
                         }
                     ) : skeletons.map(
                         () => {
-                            return <RaceSCheduleSkeleton/>
+                            return <GenericSkeleton/>
                         }
                     )
                 }

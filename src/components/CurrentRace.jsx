@@ -1,136 +1,11 @@
 import countryCodes from '../Json/countryCodes.json'
 import Skeleton from 'react-loading-skeleton'
 
+import { formatDate, formatSingledate, formatTime12, changeToClientTimeZone } from '../util/dateTime'
+import { getEvents } from '../util/events'
+
 let days = ["Fri", "Fri", "Sat", "Sat", "Sun"]
-
-let months = {"01":"Jan", "02":"Feb", "03":"Mar", "04":"Apr", "05":"May", "06":"Jun",
-            "07":"Jul", "08":"Aug", "09":"Sep", "10":"Oct", "11":"Nov", "12":"Dec"}
 let eventNames = {"FirstPractice": "Practice 1", "SecondPractice": "Practice 2", "ThirdPractice": "Practice 3"}
-
-function formatSingledate(date){
-    if(date == undefined) {
-        return ""
-    }
-    date = date.split("-")
-    let day = date[2]
-    let month = date[1]
-
-    if(day[0] == "0"){
-        day = day[1]
-    }
-
-    return `${months[month]} ${day}`
-
-}
-
-
-function formatDate(date1, date2){
-    if(date1 == undefined || date2 == undefined)  {
-        return ""
-    }
-    date1 = date1.split("-")
-    date2 = date2.split("-")
-
-    let month1 = date1[1]
-    let day1 = date1[2]
-    let month2 = date2[1]
-    let day2 = date2[2]
-
-    // remove leading zero from the days
-    if(day1[0] == "0"){
-        day1 = day1[1]
-    }
-
-    if(day2[0] == "0"){
-        day2 = day2[1]
-    }
-
-    if (month1 == month2){
-        return `${months[month1]} ${day1}-${day2}`
-    }
-
-    return `${months[month1]} ${day1} - ${months[month2]} ${day2}`
-}
-
-function getEvents(race){
-    if (race.FirstPractice == undefined){
-        return []
-    }
-    let normalOrder = ["FirstPractice", "SecondPractice", "ThirdPractice", "Qualifying"]
-    let sprintOrder = ["FirstPractice", "Qualifying", "SecondPractice", "Sprint"]
-
-    let order = normalOrder
-
-    if (race.Sprint != undefined) {
-        order = sprintOrder
-    }
-
-    let events = []
-
-    for (let event of order) {
-        let obj = {}
-        obj.name = event
-        obj.date = race[event]["date"]
-        obj.time = race[event].time
-        events.push(obj)
-    }
-
-    let raceObj = {"name": "Race", "time": race.time, "date": race.date}
-
-    events.push(raceObj)
-
-    return events
-}
-
-function changeToClientTimeZone(time){
-    time = time.split(":").map(Number)
-    let offset = -new Date().getTimezoneOffset()
-    let hrOffset = Math.floor(offset / 60)
-    let minOffset = (offset - (hrOffset) * 60)
-
-    time[0] += hrOffset
-    time[1] += minOffset
-
-    if (time[1] > 59){
-        time[0] += 1
-        time[1] -= 60
-    }
-
-    if (time[0] > 23){
-        time[0] -= 24
-    }
-    
-    for (let ind in time){
-        time[ind] = time[ind].toString()
-        if (time[ind].length == 1){
-            time[ind] = "0" + time[ind]
-        }
-    }
-
-    return time.join(":")
-}
-
-function formatTime12(time){
-    time = time.split(":")
-    let suffix = "AM"
-
-    if (Number(time[0]) > 11){
-        suffix = "PM"
-    }
-
-    if (Number(time[0])> 12){
-        time[0] = (Number(time[0]) - 12).toString()
-    }
-
-    if (time[0] == "00"){
-        time[0] = "12"
-    }
-
-    time.pop()
-
-    return time.join(":") + " " + suffix 
-}
-
 
 function ScheduleChip({name, date, time}){
     return (
@@ -154,17 +29,17 @@ function CurrentRace({race}){
             className="bg-white p-5 py-10 sm:p-10 my-10 sm:my-20 rounded-lg shadow-md"
         >
             <p className="font-bold text-blue-600 transition-transform hover:translate-x-2">
-                {race.round ?"Round " + race.round + "-  Up Next": <Skeleton/>}
+                {race.round ?"Round " + race.round + " -  Up Next": <Skeleton className='h-8'/>}
             </p>
             <div className="mt-[1rem] w-full flex flex-wrap lg:flex-nowrap gap-4 sm:gap-16">
                 <div className="w-full">
                     <div className="mt-4 flex justify-between align-middle">
                         <p className="text-xl sm:text-2xl">
-                            {formatDate(race.FirstPractice?.date, race.date) || <Skeleton className='w-20'/>}
+                            {formatDate(race.FirstPractice?.date, race.date) || <Skeleton className='w-28 h-8'/>}
                         </p>
                         <div className="rounded-md overflow-hidden w-14">
                             <img 
-                                className="w-full h-full 
+                                className="w-full h-full bg-gray-100
                                 " src={`https://flagcdn.com/w80/${countryCodes[race.Circuit?.Location.country]}.png`}
                             />
                         </div>
@@ -175,7 +50,7 @@ function CurrentRace({race}){
                             {race.Circuit?.Location.country || <Skeleton/>}
                         </h1>
                         <h2 className="text-[1.2rem] sm:text-[1.5rem] mt-4 border-b-2 pb-2 border-gray-300">
-                            {race.raceName ? "Formula 1 " + race.raceName : <Skeleton/>}
+                            {race.raceName ? "Formula 1 " + race.raceName : <Skeleton className='h-10'/>}
                         </h2>
                         <div className="flex max-w-[20rem] pt-8">
                             <img className="w-[20rem] bg-gray-200  transition-transform duration-500 transform hover:scale-105" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStbDOv98G2XsDcMQgwD2xGzzjUrM1AhrcBYZokEZGyf9D51zQ-QmeteuNn45_AUgXTorY&usqp=CAU" alt="" />

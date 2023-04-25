@@ -1,18 +1,9 @@
 import Skeleton from "react-loading-skeleton";
 import { GiFlyingFlag } from "react-icons/gi";
 import DriverChip from "../components/DriverChip";
+import GenericSkeleton  from '../components/GenericSkeleton'
 
 import { useEffect, useState } from 'react'
-
-function DriverSkeleton(){
-    return (
-        <div className="bg-white w-full p-4 rounded-md shadow-md ">
-            <Skeleton className='w-[4rem]'/>
-            <Skeleton/>
-            <Skeleton/>
-        </div>
-    )
-}
 
 function Drivers() {
     const [drivers, setDrivers] = useState([])
@@ -23,7 +14,7 @@ function Drivers() {
             let url = "https://ergast.com/api/f1/current/driverStandings.json";
             fetch(url)
             .then((res) => res.json())
-            .then((json) => {console.log(json);setDrivers(json.MRData.StandingsTable.StandingsLists[0].DriverStandings)})
+            .then((json) => {setDrivers(json.MRData.StandingsTable.StandingsLists[0].DriverStandings)})
         }, 
         []
     )
@@ -42,7 +33,7 @@ function Drivers() {
                 <p className="text-xl">{ drivers.length > 0 ? "Driver Standings" : <Skeleton className='w-[30%]'/>}</p>
             </div>
 
-            <div className="flex flex-col md:grid grid-cols-2 lg:grid-cols-3 gap-2">
+            <div className="flex flex-col md:grid md:gap-6 grid-cols-2 lg:grid-cols-3 gap-2">
                 {
                     drivers.length > 0 ? drivers.map(
                         (driver) => {
@@ -52,7 +43,7 @@ function Drivers() {
 
                     skeletons.map(
                         () => {
-                            return <DriverSkeleton/>
+                            return <GenericSkeleton/>
                         }
                     )
                 }
