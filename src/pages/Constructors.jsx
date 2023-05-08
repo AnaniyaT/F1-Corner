@@ -33,7 +33,7 @@ function Constructors(){
                 <p className="text-xl">{ constructors.length > 0 ? "Constructor Standings" : <Skeleton className='w-[30%]'/>}</p>
             </div>
 
-            <div className="flex flex-col md:grid md:gap-6 grid-cols-2 lg:grid-cols-3 gap-2"> 
+            <div className="flex flex-col md:grid md:gap-6 md:gap-y-2 grid-cols-2 lg:grid-cols-3 gap-2"> 
                 {
                     constructors.length > 0 ? constructors.map(
                         (constructor) => {

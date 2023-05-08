@@ -63,6 +63,7 @@ function NavBar() {
           }}
         >
           <NavItem href="schedule" onClicked={changeNavVisibility}>Schedule</NavItem>
+          <NavItem href="results" onClicked={changeNavVisibility}>Results</NavItem>
           {/* <NavItem href="" onClicked={changeNavVisibility}>Standings</NavItem> */}
           <NavItem href="drivers" onClicked={changeNavVisibility}>Drivers</NavItem>
           <NavItem href="constructors" onClicked={changeNavVisibility}>Constructors</NavItem>

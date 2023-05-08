@@ -27,3 +27,59 @@ body {
   background-color: #eee;
   height: 100%;
 }
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+::-webkit-scrollbar{
+  width: 10px;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-track{
+  background: white;
+  
+}
+
+::-webkit-scrollbar-thumb{
+  background: #ccc;
+  border-radius: 20px;
+
+}
+
+
+@keyframes bounceLoading {
+  0%, 25% {
+      transform: none;
+  }
+  12.5% {
+      transform: translateY(-50%);
+  }
+}
+.animate-bounceLoading1 {
+  animation: bounceLoading 1s infinite;
+}
+
+.animate-bounceLoading2 {
+  animation: bounceLoading 1s infinite;
+  animation-delay: .25s;
+}
+
+.animate-bounceLoading3 {
+  animation: bounceLoading 1s infinite;
+  animation-delay: .5s;
+}
+
+.animate-bounceLoading4 {
+  animation: bounceLoading 1s infinite;
+  animation-delay: .75s;
+}
+

@@ -3,6 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 
 import { formatDate, formatSingledate, formatTime12, changeToClientTimeZone } from '../util/dateTime'
 import { getEvents } from '../util/events'
+import { useEffect, useState } from 'react'
 
 let days = ["Fri", "Fri", "Sat", "Sat", "Sun"]
 let eventNames = {"FirstPractice": "Practice 1", "SecondPractice": "Practice 2", "ThirdPractice": "Practice 3"}
@@ -24,6 +25,13 @@ function ScheduleChip({name, date, time}){
 }
 
 function CurrentRace({race}){
+    const [trackMap, setTrackMap] = useState()
+    useEffect(() => {
+        const url = `https://api.npoint.io/a76aa8fd0b3a4314435e/races/${race?.round - 1}/trackMap`
+        fetch(url)
+        .then((res) => res.json())
+        .then((json) => setTrackMap(json))
+    }, [race])
     return (
         <div 
             className="bg-white p-5 py-10 sm:p-10 my-10 sm:my-20 rounded-lg shadow-md"
@@ -38,10 +46,10 @@ function CurrentRace({race}){
                             {formatDate(race.FirstPractice?.date, race.date) || <Skeleton className='w-28 h-8'/>}
                         </p>
                         <div className="rounded-md overflow-hidden w-14">
-                            <img 
+                             {race.Circuit ? <img 
                                 className="w-full h-full bg-gray-100
                                 " src={`https://flagcdn.com/w80/${countryCodes[race.Circuit?.Location.country]}.png`}
-                            />
+                            /> : <Skeleton className='w-14 h-8'/>} 
                         </div>
                     </div>
 
@@ -53,7 +61,8 @@ function CurrentRace({race}){
                             {race.raceName ? "Formula 1 " + race.raceName : <Skeleton className='h-10'/>}
                         </h2>
                         <div className="flex max-w-[20rem] pt-8">
-                            <img className="w-[20rem] bg-gray-200  transition-transform duration-500 transform hover:scale-105" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStbDOv98G2XsDcMQgwD2xGzzjUrM1AhrcBYZokEZGyf9D51zQ-QmeteuNn45_AUgXTorY&usqp=CAU" alt="" />
+                           { trackMap ? <img className="w-[20rem] transition-transform duration-500 transform hover:scale-105" src={trackMap} alt="" /> :
+                            <Skeleton className='w-[20rem] h-[15rem] rounded'/>}
                         </div>
                     </div>
 

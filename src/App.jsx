@@ -8,6 +8,7 @@ import Drivers from './pages/Drivers.jsx';
 import Constructors from './pages/Constructors.jsx';
 import NavBar from './components/NavBar.jsx';
 import Footer from './components/Footer';
+import Results from './pages/Results.jsx';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path='schedule' element={<Schedule/>}></Route>
               <Route path='drivers' element={<Drivers/>}></Route>
               <Route path='constructors' element={<Constructors/>}></Route>
+              <Route path='results' element={<Results/>}></Route>
             </Routes>
           </div>
           <Footer/>
