@@ -10,18 +10,18 @@ function DriverChip({driver}) {
                         {driver.Driver.permanentNumber}
                     </div>
                     <div>
-                        <p className="font-bold flex gap-3 items-center">
+                        <p className="font-bold text-sm sm:text-base flex gap-3 items-center">
                             {driver.Driver.givenName + " " + driver.Driver.familyName}
                         </p>
-                        <p>
+                        <p className="text-xs sm:text-base">
                             {driver.Constructors[0].name}
                         </p>
                     </div>
                 </div>
 
-                <p className="text-2xl font-sem">
+                <p className="text-xl sm:text-2xl">
                     {driver.points} 
-                    <span className="text-sm font-normal"> points</span>
+                    <span className="text-xs sm:text-sm font-normal"> points</span>
                 </p>
                 
             </div>

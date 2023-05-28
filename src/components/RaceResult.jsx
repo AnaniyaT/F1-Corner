@@ -58,7 +58,7 @@ function RaceResult({race}){
                         <thead>
                             <tr className=" text-blue-500">
                                 {
-                                    race?.events[eventInd].results ? sortedEvent(Object.keys(race?.events[eventInd].results[0])).map(
+                                    race?.events[eventInd]?.results ? sortedEvent(Object.keys(race?.events[eventInd].results[0])).map(
                                         (key, ind) => {
                                             return <th className={`text-left px-2 py-4 font-semibold ${isRelevant(key) ? "" : "hidden md:table-cell"}`}>{capitalize(key)}</th>
                                         }
@@ -69,7 +69,7 @@ function RaceResult({race}){
                         <tbody className="h-full">
                                 {
                                     race ?
-                                    race?.events[eventInd].results ? race?.events[eventInd].results.map(
+                                    race?.events[eventInd]?.results ? race?.events[eventInd].results.map(
                                         (res, ind) => {
                                             return <tr className="even:bg-blue-50 align-middle justify-center my-4">
                                                     {sortedEvent(Object.keys(res)).map((r, i) => {

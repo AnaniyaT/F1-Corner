@@ -7,18 +7,18 @@ function ConstructorChip({constructor}) {
             <div className="flex justify-between">
                 <div className="flex gap-4">
                     <div>
-                        <p className="font-bold text-lg flex gap-3 items-center">
+                        <p className="font-bold textsm sm:text-base md:text-lg flex gap-3 items-center">
                             {constructor.Constructor.name}
                         </p>
-                        <p>
+                        <p className="text-xs sm:text-sm">
                             {constructor.Constructor.nationality}
                         </p>
                     </div>
                 </div>
 
-                <p className="text-2xl font-sem">
+                <p className="text-xl sm:text-2xl">
                     {constructor.points} 
-                    <span className="text-sm font-normal"> points</span>
+                    <span className="text-xs sm:text-sm font-normal"> points</span>
                 </p>
                 
             </div>

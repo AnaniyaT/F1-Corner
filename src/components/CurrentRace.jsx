@@ -27,7 +27,7 @@ function ScheduleChip({name, date, time}){
 function CurrentRace({race}){
     const [trackMap, setTrackMap] = useState()
     useEffect(() => {
-        const url = `https://api.npoint.io/a76aa8fd0b3a4314435e/races/${race?.round - 1}/trackMap`
+        const url = `https://api.npoint.io/a76aa8fd0b3a4314435e/races/${race?.round}/trackMap`
         fetch(url)
         .then((res) => res.json())
         .then((json) => setTrackMap(json))
