@@ -18,7 +18,7 @@ function App() {
     <div className='h-full'>
         <BrowserRouter>
           <NavBar></NavBar>
-          <div className='max-w-7xl xl:mx-auto sm:px-4'>
+          <div className='max-w-7xl mx-2 xl:mx-auto sm:px-4'>
             <Routes>
               <Route path='/' element={<Home/>}></Route>
               <Route path='schedule' element={<Schedule/>}></Route>

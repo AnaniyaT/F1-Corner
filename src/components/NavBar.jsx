@@ -30,6 +30,12 @@ function NavBar() {
     setVisible(!visible)
   }
 
+  function closeIfOpened() {
+    if(visible === true){
+      setVisible(false)
+    }
+  }
+
   return (
     <div className="bg-white z-10 w-full relative">
       <div 
@@ -49,7 +55,7 @@ function NavBar() {
           mr-5 p-3 rounded-full cursor-pointer text-center grid place-items-center md:hidden  
           hover:bg-gray-100 text-3xl
         ">
-            {visible? <VscChromeClose/> : <RxHamburgerMenu/>}
+            {visible ? <VscChromeClose/> : <RxHamburgerMenu/>}
         </div>
 
         <div 
@@ -62,11 +68,11 @@ function NavBar() {
             top: visible ? "100%" : '-30rem'
           }}
         >
-          <NavItem href="schedule" onClicked={changeNavVisibility}>Schedule</NavItem>
-          <NavItem href="results" onClicked={changeNavVisibility}>Results</NavItem>
+          <NavItem href="schedule" onClicked={visible ? changeNavVisibility : undefined}>Schedule</NavItem>
+          <NavItem href="results" onClicked={visible ? changeNavVisibility : undefined}>Results</NavItem>
           {/* <NavItem href="" onClicked={changeNavVisibility}>Standings</NavItem> */}
-          <NavItem href="drivers" onClicked={changeNavVisibility}>Drivers</NavItem>
-          <NavItem href="constructors" onClicked={changeNavVisibility}>Constructors</NavItem>
+          <NavItem href="drivers" onClicked={visible ? changeNavVisibility : undefined}>Drivers</NavItem>
+          <NavItem href="constructors" onClicked={visible ? changeNavVisibility : undefined}>Constructors</NavItem>
         </div>
       </div>
     </div>
