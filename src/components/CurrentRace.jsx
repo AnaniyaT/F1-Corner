@@ -60,7 +60,7 @@ function CurrentRace({race}){
                         <h2 className="text-[1.2rem] sm:text-[1.5rem] mt-4 border-b-2 pb-2 border-gray-300">
                             {race.raceName ? "Formula 1 " + race.raceName : <Skeleton className='h-10'/>}
                         </h2>
-                        <div className="grid px-4 w-full mx-auto place-items-center max-w-[30rem] pt-8">
+                        <div className="grid px-4 w-full mx-auto place-items-center max-w-[30rem] lg:max-w-[25rem] pt-8">
                            { trackMap ? <img className=" transition-transform duration-500 transform hover:scale-105" src={trackMap} alt="" /> :
                             <Skeleton className='w-[20rem] h-[15rem] rounded'/>}
                            

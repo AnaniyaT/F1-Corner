@@ -5,7 +5,7 @@ function Footer(){
                 <p className="text-4xl text-blue-400 font-bold transition-all hover:translate-x-2">F1 CORNER</p>
                 <div className="flex flex-col gap-3 sm:text-lg">
                     <p>Copyright 2023</p>
-                    <a href="https://github.com/AnaniyaT">Github</a>
+                    <a target="_blank" href="https://github.com/AnaniyaT/F1-Corner">Github</a>
                     <p>Gandalf_</p>
                 </div>
             </div>
